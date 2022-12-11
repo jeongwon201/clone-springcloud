@@ -1,0 +1,23 @@
+server:
+  port: 7000
+app:
+  product:
+    protocol: http
+    host: localhost
+    port: 7001
+    service: product
+  recommend:
+    protocol: http
+    host: localhost
+    port: 7002
+    service: recommend
+  review:
+    protocol: http
+    host: localhost
+    port: 7003
+    service: review
+
+logging:
+  level:
+    root: INFO
+    com.spring.cloud.composite: DEBUG

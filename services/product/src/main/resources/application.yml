@@ -1,0 +1,21 @@
+server:
+  port: 7001
+  error:
+    include-message: always
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: product-db
+
+#  mongodb:
+#    embedded:
+#      version: 3.4.6
+
+logging:
+  level:
+    root: INFO
+    com.spring.cloud.product: DEBUG
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
