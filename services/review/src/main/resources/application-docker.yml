@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:mysql://mysqlDB/review-db
+server:
+  port: 8080
