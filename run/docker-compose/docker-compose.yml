@@ -1,0 +1,51 @@
+version: '2.1'
+
+services:
+  product:
+    build: ../../services/product
+    mem_limit: 350m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongoDB
+
+  recommend:
+    build: ../../services/recommend
+    mem_limit: 350m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongoDB
+
+  review:
+    build: ../../services/review
+    mem_limit: 350m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+
+  composite:
+    build: ../../services/composite
+    mem_limit: 350m
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  mongoDB:
+    image: mongo:3.6.9
+    mem_limit: 350m
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_PORT_PASSWORD=password
+      - MYSQL_DATABASE=review-db
+      - MYSQL_USER=user01
+      - MYSQL_PASSWORD=user01
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-uuser01", "-puser01", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
