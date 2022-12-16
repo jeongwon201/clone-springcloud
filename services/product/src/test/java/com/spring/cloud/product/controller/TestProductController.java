@@ -17,7 +17,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 import static org.springframework.http.HttpStatus.*;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = RANDOM_PORT)
+@SpringBootTest(webEnvironment = RANDOM_PORT, properties = {"spring.data.mongodb.port=0"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @AutoConfigureWebTestClient
 public class TestProductController {

@@ -4,6 +4,9 @@ server:
     include-message: always
 
 spring:
+  mongodb:
+    embedded:
+      version: 5.0.0
   data:
     mongodb:
       host: localhost
