@@ -38,6 +38,13 @@ services:
     image: mongo:3.6.9
     mem_limit: 350m
     ports:
+      - "27017:27017"
+    command: mongod --smallfiles
+
+  mysqldb:
+    image: mysql:5.7
+    mem_limit: 350m
+    ports:
       - "3306:3306"
     environment:
       - MYSQL_PORT_PASSWORD=password
@@ -45,7 +52,7 @@ services:
       - MYSQL_USER=user01
       - MYSQL_PASSWORD=user01
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-uuser01", "-puser01", "-h", "localhost"]
+      test: [ "CMD", "mysqladmin", "ping", "-uuser01", "-puser01", "-h", "localhost" ]
       interval: 10s
       timeout: 5s
       retries: 10
