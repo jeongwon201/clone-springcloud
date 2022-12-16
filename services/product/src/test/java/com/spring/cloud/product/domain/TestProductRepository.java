@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 import static java.util.stream.IntStream.rangeClosed;
 
 @ExtendWith(SpringExtension.class)
-@DataMongoTest
+@DataMongoTest(properties = {"spring.data.mongodb.port=0"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestProductRepository {
 

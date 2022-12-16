@@ -11,7 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.List;
 
 @ExtendWith(SpringExtension.class)
-@DataMongoTest
+@DataMongoTest(properties = {"spring.data.mongodb.port=0"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestRecommendRepository {
 
