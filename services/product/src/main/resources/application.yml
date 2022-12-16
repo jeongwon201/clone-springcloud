@@ -6,7 +6,7 @@ server:
 spring:
   mongodb:
     embedded:
-      version: 4.6.1
+      version: 3.4.6
   data:
     mongodb:
       host: localhost
