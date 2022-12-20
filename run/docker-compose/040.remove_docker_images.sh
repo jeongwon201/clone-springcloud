@@ -1,5 +1,5 @@
-docker rmi docker-compose_composite
-docker rmi docker-compose_review
-docker rmi docker-compose_recommend
-docker rmi docker-compose_product
-docker rmi docker-compose_eureka
+docker rmi docker-compose-composite
+docker rmi docker-compose-review
+docker rmi docker-compose-recommend
+docker rmi docker-compose-product
+docker rmi docker-compose-eureka
