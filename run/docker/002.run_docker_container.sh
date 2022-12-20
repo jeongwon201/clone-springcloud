@@ -15,6 +15,11 @@ sudo docker run -d --rm --name mongoDB \
 mongo:3.6.9 \
 mongod --smallfiles
 
+docker run -d --rm --name eureka \
+--network apps_net \
+-p 8761:8761 \
+eureka
+
 docker run -d --rm --name composite \
 --network apps_net \
 -e SPRING_PROFILES_ACTIVE=docker \

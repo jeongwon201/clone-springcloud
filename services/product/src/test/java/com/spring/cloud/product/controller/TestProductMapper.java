@@ -14,7 +14,7 @@ public class TestProductMapper {
     public void mapperTests() {
         Assertions.assertNotNull(mapper);
 
-        Product dto = new Product(1, "name", "info");
+        Product dto = new Product(1, "name", "info", "serviceAddress");
         ProductEntity entity = mapper.dtoToEntity(dto);
 
         Assertions.assertEquals(dto.getProductId(), entity.getProductId());
@@ -26,5 +26,6 @@ public class TestProductMapper {
         Assertions.assertEquals(dto.getProductId(), dto2.getProductId());
         Assertions.assertEquals(dto.getProductName(), dto2.getProductName());
         Assertions.assertEquals(dto.getProductInfo(), dto2.getProductInfo());
+        Assertions.assertNull(dto2.getServiceAddress());
     }
 }

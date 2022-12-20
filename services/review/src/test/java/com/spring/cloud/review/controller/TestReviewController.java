@@ -17,7 +17,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 import static org.springframework.http.HttpStatus.*;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = RANDOM_PORT, properties = {"spring.datasource.url=jdbc:h2:mem:review-db"})
+@SpringBootTest(webEnvironment = RANDOM_PORT, properties = {"spring.datasource.url=jdbc:h2:mem:review-db", "eureka.client.enabled=false"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @AutoConfigureWebTestClient
 public class TestReviewController {
@@ -44,7 +44,7 @@ public class TestReviewController {
     }
 
     private WebTestClient.BodyContentSpec addReview(String productId, int reviewId, HttpStatus expectedStatus) {
-        Review review = new Review(Integer.parseInt(productId), reviewId, "Author " + reviewId, "Subject " + reviewId, "Content " + reviewId);
+        Review review = new Review(Integer.parseInt(productId), reviewId, "Author " + reviewId, "Subject " + reviewId, "Content " + reviewId, null);
         WebTestClient.BodyContentSpec result = client.post()
                 .uri("/review")
                 .body(Mono.just(review), Review.class)

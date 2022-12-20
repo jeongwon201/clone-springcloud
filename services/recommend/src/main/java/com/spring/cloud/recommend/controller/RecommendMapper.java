@@ -13,6 +13,7 @@ import java.util.List;
 public interface RecommendMapper {
 
     @Mappings({
+            @Mapping(target = "serviceAddress", ignore = true)
     })
     Recommend entityToDto(RecommendEntity entity);
 

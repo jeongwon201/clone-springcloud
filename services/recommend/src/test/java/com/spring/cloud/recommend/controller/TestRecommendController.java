@@ -17,7 +17,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 import static org.springframework.http.HttpStatus.*;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = RANDOM_PORT, properties = {"spring.data.mongodb.port=0"})
+@SpringBootTest(webEnvironment = RANDOM_PORT, properties = {"spring.data.mongodb.port=0", "eureka.client.enabled=false"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @AutoConfigureWebTestClient
 public class TestRecommendController {
@@ -36,7 +36,7 @@ public class TestRecommendController {
 
 
     private WebTestClient.BodyContentSpec addRecommend(int productId, int recommendId, HttpStatus expectedStatus) {
-        Recommend recommend = new Recommend(productId, recommendId, "Author " + recommendId, "Content " + recommendId);
+        Recommend recommend = new Recommend(productId, recommendId, "Author " + recommendId, "Content " + recommendId, null);
         WebTestClient.BodyContentSpec result = client.post()
                 .uri("/recommend")
                 .body(Mono.just(recommend), Recommend.class)

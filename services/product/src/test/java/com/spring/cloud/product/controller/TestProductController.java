@@ -17,7 +17,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 import static org.springframework.http.HttpStatus.*;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = RANDOM_PORT, properties = {"spring.data.mongodb.port=0"})
+@SpringBootTest(webEnvironment = RANDOM_PORT, properties = {"spring.data.mongodb.port=0", "eureka.client.enabled=false"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @AutoConfigureWebTestClient
 public class TestProductController {
@@ -44,7 +44,7 @@ public class TestProductController {
     }
 
     private WebTestClient.BodyContentSpec addProduct(int productId, HttpStatus expectedStatus) {
-        Product product = new Product(productId, productId + "_name", productId + "_info");
+        Product product = new Product(productId, productId + "_name", productId + "_info", null);
         WebTestClient.BodyContentSpec result = client.post()
                 .uri("/product")
                 .body(Mono.just(product), Product.class)

@@ -4,6 +4,7 @@ import com.spring.cloud.api.controller.ProductControllerInterface;
 import com.spring.cloud.api.dto.Product;
 import com.spring.cloud.api.exception.InvalidInputException;
 import com.spring.cloud.api.exception.NotFoundException;
+import com.spring.cloud.api.util.ServiceUtil;
 import com.spring.cloud.product.domain.ProductEntity;
 import com.spring.cloud.product.domain.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ public class ProductController implements ProductControllerInterface {
 
     private final ProductRepository repository;
     private final ProductMapper mapper;
+    private final ServiceUtil serviceUtil;
 
     @Override
     public Product createProduct(Product body) {
@@ -41,6 +43,7 @@ public class ProductController implements ProductControllerInterface {
                 .orElseThrow(() -> new NotFoundException("No productId: " + productId));
 
         Product product = mapper.entityToDto(entity);
+        product.setServiceAddress(serviceUtil.getServiceAddress());
         log.debug("getProduct: {}", product.getProductId());
         return product;
     }

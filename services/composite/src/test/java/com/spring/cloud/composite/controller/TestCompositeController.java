@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = RANDOM_PORT)
+@SpringBootTest(webEnvironment = RANDOM_PORT, properties = {"eureka.client.enabled=false"})
 @AutoConfigureWebTestClient
 public class TestCompositeController {
 
@@ -40,11 +40,11 @@ public class TestCompositeController {
     @BeforeEach
     public void setUp() {
         when(integrateModule.getProduct(PRODUCT_ID_OK))
-                .thenReturn(new Product(PRODUCT_ID_OK, "name", null));
+                .thenReturn(new Product(PRODUCT_ID_OK, "name", null, null));
         when(integrateModule.getRecommends(PRODUCT_ID_OK))
-                .thenReturn(Collections.singletonList(new Recommend(PRODUCT_ID_OK, 1, "author", "content")));
+                .thenReturn(Collections.singletonList(new Recommend(PRODUCT_ID_OK, 1, "author", "content", null)));
         when(integrateModule.getReviews(PRODUCT_ID_OK))
-                .thenReturn(Collections.singletonList(new Review(PRODUCT_ID_OK, 1, "author", "subject", "content")));
+                .thenReturn(Collections.singletonList(new Review(PRODUCT_ID_OK, 1, "author", "subject", "content", null)));
 
         when(integrateModule.getProduct(PRODUCT_ID_NOT_FOUND))
                 .thenThrow(new NotFoundException("No productId: " + PRODUCT_ID_NOT_FOUND));

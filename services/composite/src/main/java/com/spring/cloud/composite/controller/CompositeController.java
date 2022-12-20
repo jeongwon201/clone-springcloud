@@ -1,11 +1,9 @@
 package com.spring.cloud.composite.controller;
 
 import com.spring.cloud.api.controller.CompositeControllerInterface;
-import com.spring.cloud.api.dto.Composite;
-import com.spring.cloud.api.dto.Product;
-import com.spring.cloud.api.dto.Recommend;
-import com.spring.cloud.api.dto.Review;
+import com.spring.cloud.api.dto.*;
 import com.spring.cloud.api.exception.NotFoundException;
+import com.spring.cloud.api.util.ServiceUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,23 +16,24 @@ import java.util.List;
 public class CompositeController implements CompositeControllerInterface {
 
     private final IntegrateModule integrateModule;
+    private final ServiceUtil serviceUtil;
 
     @Override
     public void createComposite(Composite body) {
         try {
-            Product product = new Product(body.getProductId(), body.getProductName(), null);
+            Product product = new Product(body.getProductId(), body.getProductName(), null, null);
             integrateModule.createProduct(product);
 
             if(body.getRecommendList() != null) {
                 body.getRecommendList().forEach(r -> {
-                    Recommend recommend = new Recommend(body.getProductId(), r.getRecommendId(), r.getAuthor(), r.getContent());
+                    Recommend recommend = new Recommend(body.getProductId(), r.getRecommendId(), r.getAuthor(), r.getContent(), null);
                     integrateModule.createRecommend(recommend);
                 });
             }
 
             if(body.getReviewList() != null) {
                 body.getReviewList().forEach(r -> {
-                    Review review = new Review(body.getProductId(), r.getReviewId(), r.getAuthor(), r.getSubject(), r.getContent());
+                    Review review = new Review(body.getProductId(), r.getReviewId(), r.getAuthor(), r.getSubject(), r.getContent(), null);
                     integrateModule.createReview(review);
                 });
             }
@@ -53,7 +52,12 @@ public class CompositeController implements CompositeControllerInterface {
 
         List<Review> reviews = integrateModule.getReviews(productId);
 
-        return new Composite(product.getProductId(), product.getProductName(), recommends, reviews);
+        String productAddress = product.getServiceAddress();
+        String recommendAddress = (recommends != null && recommends.size() > 0) ? recommends.get(0).getServiceAddress() : "";
+        String reviewAddress = (reviews != null && reviews.size() > 0) ? reviews.get(0).getServiceAddress() : "";
+
+        ServiceAddresses serviceAddresses = new ServiceAddresses(serviceUtil.getServiceAddress(), productAddress, recommendAddress, reviewAddress);
+        return new Composite(product.getProductId(), product.getProductName(), recommends, reviews, serviceAddresses);
     }
 
     @Override

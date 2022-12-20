@@ -4,6 +4,9 @@ project_dir=$(pwd)
 cd $project_dir
 gradle build
 
+cd $project_dir/cloud/eureka
+docker build -t eureka -f ./Dockerfile .
+
 cd $project_dir/services/composite
 docker build -t composite -f ./Dockerfile .
 

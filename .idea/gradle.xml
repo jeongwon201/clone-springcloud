@@ -13,6 +13,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/api" />
+            <option value="$PROJECT_DIR$/cloud" />
+            <option value="$PROJECT_DIR$/cloud/eureka" />
             <option value="$PROJECT_DIR$/services" />
             <option value="$PROJECT_DIR$/services/composite" />
             <option value="$PROJECT_DIR$/services/product" />
@@ -30,6 +32,16 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/api" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/cloud/eureka" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../gradle/gradle-7.6" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/cloud/eureka" />
           </set>
         </option>
       </GradleProjectSettings>

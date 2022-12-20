@@ -14,4 +14,5 @@ public class Composite {
     private String productName;
     private List<Recommend> recommendList;
     private List<Review> reviewList;
+    private ServiceAddresses serviceAddresses;
 }

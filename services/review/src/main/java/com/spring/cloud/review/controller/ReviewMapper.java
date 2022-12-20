@@ -13,6 +13,7 @@ import java.util.List;
 public interface ReviewMapper {
 
     @Mappings({
+            @Mapping(target = "serviceAddress", ignore = true)
     })
     Review entityToDto(ReviewEntity entity);
 

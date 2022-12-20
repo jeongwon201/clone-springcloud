@@ -10,3 +10,7 @@ app:
   review:
     host: review
     port: 8080
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/

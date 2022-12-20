@@ -1,13 +1,20 @@
 version: '2.1'
 
 services:
+  eureka:
+    build: ../../cloud/eureka
+    mem_limit: 350m
+    ports:
+      - "8761:8761"
+
   product:
     build: ../../services/product
     mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
-      - mongoDB
+      mongoDB:
+        condition: service_healthy
 
   recommend:
     build: ../../services/recommend
@@ -15,7 +22,8 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
-      - mongoDB
+      mongoDB:
+        condition: service_healthy
 
   review:
     build: ../../services/review
@@ -40,6 +48,11 @@ services:
     ports:
       - "27017:27017"
     command: mongod --smallfiles
+    healthcheck:
+      test: "mongo --eval 'db.stats().ok'"
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
   mysqldb:
     image: mysql:5.7

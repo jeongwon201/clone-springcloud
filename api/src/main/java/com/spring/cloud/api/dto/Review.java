@@ -13,4 +13,5 @@ public class Review {
     private String author;
     private String subject;
     private String content;
+    private String serviceAddress;
 }

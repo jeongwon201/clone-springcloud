@@ -10,6 +10,7 @@ import org.mapstruct.Mappings;
 public interface ProductMapper {
 
     @Mappings({
+            @Mapping(target = "serviceAddress", ignore = true)
     })
     Product entityToDto(ProductEntity entity);
 

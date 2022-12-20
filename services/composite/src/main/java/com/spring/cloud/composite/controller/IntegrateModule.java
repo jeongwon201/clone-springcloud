@@ -12,6 +12,9 @@ import com.spring.cloud.api.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -82,7 +85,11 @@ public class IntegrateModule implements ProductControllerInterface, RecommendCon
     public Product createProduct(Product body) {
         try {
             String url = productServiceUrl;
-            Product product = restTemplate.postForObject(url, body, Product.class);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<Product> entity = new HttpEntity<Product>(body, headers);
+
+            Product product = restTemplate.postForObject(url, entity, Product.class);
             log.debug("##############################################################################################");
             log.debug("createProduct: {}", url);
             log.debug("product: {}", product.toString());
@@ -126,7 +133,11 @@ public class IntegrateModule implements ProductControllerInterface, RecommendCon
     public Recommend createRecommend(Recommend body) {
         try {
             String url = recommendServiceUrl;
-            Recommend recommend = restTemplate.postForObject(url, body, Recommend.class);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<Recommend> entity = new HttpEntity<Recommend>(body, headers);
+
+            Recommend recommend = restTemplate.postForObject(url, entity, Recommend.class);
             log.debug("##############################################################################################");
             log.debug("createRecommend: {}", url);
             log.debug("recommend: {}", recommend.toString());
@@ -171,7 +182,11 @@ public class IntegrateModule implements ProductControllerInterface, RecommendCon
     public Review createReview(Review body) {
         try {
             String url = reviewServiceUrl;
-            Review review = restTemplate.postForObject(url, body, Review.class);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<Review> entity = new HttpEntity<Review>(body, headers);
+
+            Review review = restTemplate.postForObject(url, entity, Review.class);
             log.debug("##############################################################################################");
             log.debug("createReview: {}", url);
             log.debug("review: {}", review.toString());
