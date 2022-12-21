@@ -13,4 +13,7 @@ kill -9 $pid
 pid=`ps -ef|grep libs/review|grep -v grep | awk '{print $2}'`
 kill -9 $pid
 
+pid=`ps -ef|grep libs/gateway|grep -v grep | awk '{print $2}'`
+kill -9 $pid
+
 docker stop mysqlDB mongoDB

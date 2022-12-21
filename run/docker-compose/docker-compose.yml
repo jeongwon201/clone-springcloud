@@ -1,6 +1,19 @@
 version: '2.1'
 
 services:
+
+  gateway:
+    build: ../../cloud/gateway
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_SSL_KEY_STORE=file:/keystore/gateway-docker-compose.p12
+      - SERVER_SSL_KEY_STORE_PASSWORD=password
+    volumes:
+      - $PWD/keystore:/keystore
+    mem_limit: 350m
+    ports:
+      - "443:8080"
+
   eureka:
     build: ../../cloud/eureka
     mem_limit: 350m
@@ -37,8 +50,6 @@ services:
   composite:
     build: ../../services/composite
     mem_limit: 350m
-    ports:
-      - "8080:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
 

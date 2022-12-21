@@ -4,4 +4,4 @@ include 'services:product'
 include 'services:recommend'
 include 'services:review'
 include 'cloud:eureka'
-
+include 'cloud:gateway'

@@ -1,3 +1,5 @@
+sudo docker stop gateway;
+
 sudo docker stop eureka;
 
 sudo docker stop composite;
@@ -21,5 +23,7 @@ sudo docker rmi product;
 sudo docker rmi recommend;
 
 sudo docker rmi review;
+
+sudo docker rmi gateway;
 
 sudo docker network rm apps_net;

@@ -1,9 +1,6 @@
 cd ../ ..
 project_dir=$(pwd)
 
-cd $project_dir
-gradle build
-
 cd $project_dir/cloud/eureka
 docker build -t eureka -f ./Dockerfile .
 
@@ -18,3 +15,6 @@ docker build -t recommend -f ./Dockerfile .
 
 cd $project_dir/services/review
 docker build -t review -f ./Dockerfile .
+
+cd $project_dir/cloud/gateway
+docker build -t gateway -f ./Dockerfile .
