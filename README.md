@@ -1,9 +1,9 @@
 # clone-springcloud | Spring Cloud 클론 프로젝트
 
 <img align="right" src="https://github.com/jeongwon201/spring-webflux/assets/81132541/3e7997d0-0dd2-4bba-84e2-5c5584cfecd0" width="200px"/>
-<h3 align="left">Spring Cloud 클론 프로젝트입니다.</h3>
+<h3 align="left">유튜브 강의를 참고한 Spring Cloud 클론 프로젝트입니다.</h3>
 
-- 참고 자료 : https://www.youtube.com/playlist?list=PLogzC_RPf25E9qprqOIDTzwZ24PuEf-1v
+- 유튜브 강의 링크 : <a href="https://www.youtube.com/playlist?list=PLogzC_RPf25E9qprqOIDTzwZ24PuEf-1v">링크</a>
 <br />
 <br />
 
